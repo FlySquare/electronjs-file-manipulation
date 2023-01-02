@@ -28,6 +28,13 @@ Install dependencies
   npm install
 ```
 
+Create Folders
+
+```bash
+  mkdir old_images
+  mkdir new_images
+```
+
 Start Application
 
 ```bash
