@@ -4,6 +4,8 @@ const store = new Store();
 const {ipcMain} = require('electron')
 const fs = require("fs");
 const path = require("path");
+const webp = require("webp-converter");
+webp.grant_permission();
 
 function createWindow() {
     if (store.get('width') === undefined) {
@@ -56,6 +58,24 @@ app.whenReady().then(() => {
             for (const file of files) {
                 fs.unlink(path.join('new_images', file), (err) => {
                     if (err) throw err;
+                });
+            }
+        });
+    });
+
+    ipcMain.on('change_type', (event, arg) => {
+        let word = arg[0];
+        let number = arg[1];
+        fs.readdir('old_images', (err, files) => {
+            if (err) throw err;
+
+            for (const file of files) {
+                number++;
+                const result = webp.dwebp('old_images/' + file,'new_images/'+ word + '00000' + number +'.jpg',"-o",logging="-v");
+                result.then((response) => {
+                    fs.unlink(path.join('old_images', file), (err) => {
+                        if (err) throw err;
+                    });
                 });
             }
         });

@@ -9,7 +9,7 @@
 <body>
 <div class="container">
     <br>
-    <h1>ŞahNaz Tasarım İsimlendirme</h1>
+    <h1>Developer by Umut Can Arda</h1>
     <br>
     <hr>
         <div class="row">
@@ -30,6 +30,12 @@
                 <button id="submit" class="btn btn-success" style="width: 100%">Dosyaları Yeniden İsimlendir</button>
             </div>
         </div>
+    <br>
+    <div class="row">
+        <div class="col">
+            <button id="change_type" class="btn btn-primary" style="width: 100%">Dosyaları WEBP - JPG Dönüştür Ve İsimlendir</button>
+        </div>
+    </div>
     <br>
     <br>
     <hr>
@@ -59,6 +65,14 @@
         const {ipcRenderer} = require('electron')
         ipcRenderer.send('clear-new', 1)
         alert("Yeni Resim Klasörü Boşaltıldı.")
+    });
+
+    document.querySelector('#change_type').addEventListener('click', function() {
+        let word = document.getElementById("word").value;
+        let number = document.getElementById("number").value;
+        const {ipcRenderer} = require('electron')
+        ipcRenderer.send('change_type',  [word,number])
+        alert("Tüm Resimler JPG Formatına Dönüştürüldü Ve İsimleri Değiştirildi.")
     });
 
     document.querySelector('#clear_old').addEventListener('click', function() {

@@ -10,7 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "electron": "^22.0.0",
-    "electron-store": "^8.1.0"
+    "electron-store": "^8.1.0",
+    "webp-converter": "^2.3.3"
   },
   "devDependencies": {
     "electron-packager": "^17.1.1"
